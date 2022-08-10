@@ -5,8 +5,8 @@ import { getAllPieces } from "../data/data"
 export const MemoryTable = () => {
 
     const [pieces, setPieces] = React.useState([])
-    const [buttonStatus, setButtonStatus] = React.useState(false)
     const [buttonUncovered, setButtonUncovered] = React.useState(false)
+    const [idPressedList, setIdPressedList] = React.useState([])
 
 
     React.useEffect(() => {
@@ -16,9 +16,14 @@ export const MemoryTable = () => {
     }, [])
 
     const handleButtonPiece = (params) => {
-        setButtonStatus(!buttonStatus)
-        console.log("Boolean Status", buttonStatus, params.id);
-        setButtonUncovered(!buttonUncovered)
+        console.log("Button id:", params.id);
+        setButtonUncovered(!buttonUncovered);
+        if (!idPressedList.includes(params.id)) {
+            idPressedList.push(params.id)
+        }
+        console.log("ID Pressed List:", idPressedList);
+        // params.isActive = "Yes"
+        // console.log("AA", params.isActive);
     }
 
     return (
