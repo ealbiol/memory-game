@@ -24,6 +24,7 @@ export const MemoryTable = () => {
         console.log("ID Pressed List:", idPressedList);
         // params.isActive = "Yes"
         // console.log("AA", params.isActive);
+
     }
 
     return (
@@ -32,9 +33,38 @@ export const MemoryTable = () => {
                 pieces.map((piece, index) => {
                     return (
                         <div key={index}>
+
+                            {/* TO DELETE */}
                             {/* <div style={{ backgroundColor: "salmon" }}>{piece.name !== "Earth" ? piece.name : ""}</div>
-                        {piece.name !== "Earth" && <div>{piece.name}</div>} */}
-                            <div className={buttonUncovered ? "pieceBoxUncovered" : "pieceBoxCovered"} onClick={() => handleButtonPiece(piece)}>{piece.name} {piece.id}</div>
+                            {piece.name !== "Earth" && <div>{piece.name}</div>} */}
+
+                            {/* TO DELETE */}
+                            {/* {
+                                idPressedList.includes(piece.id) ?
+                                    <div
+                                        className={"pieceBoxUncovered"}
+                                        onClick={() => handleButtonPiece(piece)}
+                                    >
+                                        {piece.name} {piece.id}
+                                    </div>
+                                    :
+                                    <div
+                                        className={"pieceBoxCovered"}
+                                        onClick={() => handleButtonPiece(piece)}
+                                    >
+                                        {piece.name} {piece.id}
+                                    </div>
+                            } */}
+
+
+                            {/* GOOD! */}
+                            <div
+                                className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
+                                // className={buttonUncovered ? "pieceBoxUncovered" : "pieceBoxCovered"}
+                                onClick={() => handleButtonPiece(piece)}
+                            >
+                                {piece.name} {piece.id}
+                            </div>
                         </div>)
                 })
             }
