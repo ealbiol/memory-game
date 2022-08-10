@@ -6,6 +6,8 @@ export const MemoryTable = () => {
 
     const [pieces, setPieces] = React.useState([])
     const [buttonStatus, setButtonStatus] = React.useState(false)
+    const [buttonUncovered, setButtonUncovered] = React.useState(false)
+
 
     React.useEffect(() => {
         getAllPieces().then((result) => {
@@ -13,9 +15,10 @@ export const MemoryTable = () => {
         })
     }, [])
 
-    const handleButtonPiece = () => {
+    const handleButtonPiece = (params) => {
         setButtonStatus(!buttonStatus)
-        console.log("AA", buttonStatus);
+        console.log("Boolean Status", buttonStatus, params.id);
+        setButtonUncovered(!buttonUncovered)
     }
 
     return (
@@ -26,7 +29,7 @@ export const MemoryTable = () => {
                         <div key={index}>
                             {/* <div style={{ backgroundColor: "salmon" }}>{piece.name !== "Earth" ? piece.name : ""}</div>
                         {piece.name !== "Earth" && <div>{piece.name}</div>} */}
-                            <div className="pieceBox" onClick={() => handleButtonPiece()}>{piece.name}</div>
+                            <div className={buttonUncovered ? "pieceBoxUncovered" : "pieceBoxCovered"} onClick={() => handleButtonPiece(piece)}>{piece.name} {piece.id}</div>
                         </div>)
                 })
             }
