@@ -24,10 +24,9 @@ export const MemoryTable = () => {
     }, [])
 
     const handleButtonPiece = (params) => {
-        console.log("Button id:", params.id);
-        console.log("Full Object", params);
+        // console.log("Button id:", params.id);
+        // console.log("Full Object", params);
         setNumPiecesPressed(numPiecesPressed + 1);
-        console.log("Number Pieces pressed:", numPiecesPressed);
         buttonNamesPressedList.push(params.name)
         console.log("Planets pressed:", buttonNamesPressedList);
         setButtonUncovered(!buttonUncovered);
@@ -40,19 +39,21 @@ export const MemoryTable = () => {
 
     }
 
+    //TRY AGAIN BUTTON
     const nextTry = () => {
         setNumPiecesPressed(0);
         setIdPressedList(idPressedList.slice(0, -2))
         setButtonNamesPressedList([]);
-        console.log("List of planets after Pressing Tra Again:", buttonNamesPressedList.length);
-        setFailedMessage("");
-        setFailedButtonMessage("");
+        console.log("List of planets after Pressing Try Again:", buttonNamesPressedList.length);
+        setFailedMessage("failed!");
+        setFailedButtonMessage("try again");
     }
 
+    // FIND NEXT PAIR BUTTON
     const findNextPair = () => {
         setNumPiecesPressed(0);
-        setSuccessMessage("");
-        setSuccessButtonMessage("");
+        setSuccessMessage("match!");
+        setSuccessButtonMessage("find next pair");
         setButtonNamesPressedList([]);
     };
 
