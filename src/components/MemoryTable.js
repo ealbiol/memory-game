@@ -7,7 +7,10 @@ export const MemoryTable = () => {
     const [pieces, setPieces] = React.useState([])
     const [buttonUncovered, setButtonUncovered] = React.useState(false)
     const [idPressedList, setIdPressedList] = React.useState([])
-    const [numPiecesPressed, setNumPiecesPressed] = React.useState(1)
+    const [numPiecesPressed, setNumPiecesPressed] = React.useState(0)
+    const [buttonNamesPressedList, setButtonNamesPressedList] = React.useState([])
+
+
 
 
     React.useEffect(() => {
@@ -19,8 +22,10 @@ export const MemoryTable = () => {
     const handleButtonPiece = (params) => {
         console.log("Button id:", params.id);
         console.log("Full Object", params);
-        setNumPiecesPressed(numPiecesPressed++);
+        setNumPiecesPressed(numPiecesPressed + 1);
         console.log("Number Buttons pressed:", numPiecesPressed);
+        buttonNamesPressedList.push(params.name)
+        console.log("Planets pressed:", buttonNamesPressedList);
         setButtonUncovered(!buttonUncovered);
         if (!idPressedList.includes(params.id)) {
             idPressedList.push(params.id)
@@ -31,48 +36,109 @@ export const MemoryTable = () => {
 
     }
 
+    const nextTry = () => {
+        setNumPiecesPressed(0);
+        setIdPressedList([]);
+        setButtonNamesPressedList(buttonNamesPressedList.splice(buttonNamesPressedList.length - 2, 2))
+        console.log("List of planets after Pressing Tra Again:", buttonNamesPressedList.length);
+    }
+
+    const findNextPair = () => {
+
+    }
+
     return (
-        <div className="table">
-            {
-                pieces.map((piece, index) => {
-                    return (
-                        <div key={index}>
+        <div className="main-table">
+            <div className="table-buttons">
 
-                            {/* TO DELETE */}
-                            {/* <div style={{ backgroundColor: "salmon" }}>{piece.name !== "Earth" ? piece.name : ""}</div>
-                            {piece.name !== "Earth" && <div>{piece.name}</div>} */}
-
-                            {/* TO DELETE */}
-                            {/* {
-                                idPressedList.includes(piece.id) ?
-                                    <div
-                                        className={"pieceBoxUncovered"}
-                                        onClick={() => handleButtonPiece(piece)}
-                                    >
-                                        {piece.name} {piece.id}
-                                    </div>
-                                    :
-                                    <div
-                                        className={"pieceBoxCovered"}
-                                        onClick={() => handleButtonPiece(piece)}
-                                    >
-                                        {piece.name} {piece.id}
-                                    </div>
-                            } */}
-
-
-                            {/* GOOD! */}
-                            <div
-                                className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
-                                // className={buttonUncovered ? "pieceBoxUncovered" : "pieceBoxCovered"}
-                                onClick={() => handleButtonPiece(piece)}
-                            >
-                                {piece.name}{" "}{piece.id}
+                <div>
+                    {
+                        numPiecesPressed === 2
+                            ?
+                            <div>
+                                <div>Number of buttons pressed: {numPiecesPressed}</div>
+                                <div>Evaluation Moment</div>
                             </div>
-                        </div>)
-                })
-            }
+                            :
+                            <div>Number of buttons pressed: {numPiecesPressed}</div>
+                    }
+                </div>
+
+
+                {
+                    pieces.map((piece, index) => {
+                        return (
+                            <div key={index}>
+
+                                {
+                                    numPiecesPressed >= 2 ?
+                                        //YES, equal or higher than 2
+                                        <div
+                                            className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
+                                        >
+                                            {piece.name}{" "}{piece.id}
+                                        </div>
+
+                                        :
+
+                                        //NO
+                                        <div
+                                            className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
+                                            // className={buttonUncovered ? "pieceBoxUncovered" : "pieceBoxCovered"}
+                                            onClick={() => handleButtonPiece(piece)}
+                                        >
+                                            {piece.name}{" "}{piece.id}
+                                        </div>
+                                }
+                            </div>)
+                    })
+                }
+            </div>
+            <div>
+                <div className="evaluationWindow">
+                    <div>EVALUATION TIME</div>
+                    <div>{buttonNamesPressedList[0]}</div>
+                    <div>{buttonNamesPressedList[1]}</div>
+                </div>
+                <div>
+                    <div>Number of buttons pressed: {" "}{buttonNamesPressedList.length}</div>
+                    {
+                        buttonNamesPressedList[0] && buttonNamesPressedList[1] !== 0 ?
+                            <div>
+                                {
+                                    buttonNamesPressedList.length === 2 ?
+                                        <div>
+                                            {
+                                                buttonNamesPressedList[0] === buttonNamesPressedList[1] ?
+                                                    <div>
+                                                        <h1>MATCH!</h1>
+                                                        <button
+                                                            onClick={() => findNextPair()}
+                                                        >
+                                                            FIND NEXT PAIR
+                                                        </button>
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                        <button
+                                                            onClick={() => nextTry()}
+                                                        >
+                                                            TRY AGAIN
+                                                        </button>
+                                                    </div>
+                                            }
+                                        </div>
+                                        :
+                                        <div>Press one more button...</div>
+                                }
+                            </div>
+                            :
+                            <div></div>
+                    }
+                </div>
+            </div>
         </div>
+
     )
 }
 

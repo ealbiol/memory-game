@@ -6,12 +6,19 @@ body {
   color: $primary-color;
 };
 
-.table{
+.main-table{
+  display: flex;
+  border: 1px solid green;
+};
+
+.table-buttons{
   border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 75%;
+  margin: 20px
 };
 
 .pieceBoxCovered{
@@ -42,3 +49,11 @@ body {
   cursor: pointer;
   color: black
 };
+
+.evaluationWindow{
+  width: 100%;
+  height: 300px;
+  background-color:"red";
+  margin: 20px;
+  border: 1px solid green;
+}
