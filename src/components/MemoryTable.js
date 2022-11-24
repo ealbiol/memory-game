@@ -7,6 +7,7 @@ export const MemoryTable = () => {
     const [pieces, setPieces] = React.useState([])
     const [buttonUncovered, setButtonUncovered] = React.useState(false)
     const [idPressedList, setIdPressedList] = React.useState([])
+    const [numPiecesPressed, setNumPiecesPressed] = React.useState(1)
 
 
     React.useEffect(() => {
@@ -17,6 +18,9 @@ export const MemoryTable = () => {
 
     const handleButtonPiece = (params) => {
         console.log("Button id:", params.id);
+        console.log("Full Object", params);
+        setNumPiecesPressed(numPiecesPressed++);
+        console.log("Number Buttons pressed:", numPiecesPressed);
         setButtonUncovered(!buttonUncovered);
         if (!idPressedList.includes(params.id)) {
             idPressedList.push(params.id)
@@ -63,7 +67,7 @@ export const MemoryTable = () => {
                                 // className={buttonUncovered ? "pieceBoxUncovered" : "pieceBoxCovered"}
                                 onClick={() => handleButtonPiece(piece)}
                             >
-                                {piece.name} {piece.id}
+                                {piece.name}{" "}{piece.id}
                             </div>
                         </div>)
                 })
