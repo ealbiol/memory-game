@@ -9,9 +9,13 @@ export const MemoryTable = () => {
     const [idPressedList, setIdPressedList] = React.useState([])
     const [numPiecesPressed, setNumPiecesPressed] = React.useState(0)
     const [buttonNamesPressedList, setButtonNamesPressedList] = React.useState([])
+    const [successMessage, setSuccessMessage] = React.useState("Match!")
+    const [failedMessage, setFailedMessage] = React.useState("Failed!")
+    const [successButtonMessage, setSuccessButtonMessage] = React.useState("find next pair")
+    const [failedButtonMessage, setFailedButtonMessage] = React.useState("try again")
 
-
-
+    console.log("ID PRESSED LIST", idPressedList);
+    console.log("NUM PIECES PRESSED", numPiecesPressed);
 
     React.useEffect(() => {
         getAllPieces().then((result) => {
@@ -23,7 +27,7 @@ export const MemoryTable = () => {
         console.log("Button id:", params.id);
         console.log("Full Object", params);
         setNumPiecesPressed(numPiecesPressed + 1);
-        console.log("Number Buttons pressed:", numPiecesPressed);
+        console.log("Number Pieces pressed:", numPiecesPressed);
         buttonNamesPressedList.push(params.name)
         console.log("Planets pressed:", buttonNamesPressedList);
         setButtonUncovered(!buttonUncovered);
@@ -38,17 +42,24 @@ export const MemoryTable = () => {
 
     const nextTry = () => {
         setNumPiecesPressed(0);
-        setIdPressedList([]);
-        setButtonNamesPressedList(buttonNamesPressedList.splice(buttonNamesPressedList.length - 2, 2))
+        setIdPressedList(idPressedList.slice(0, -2))
+        setButtonNamesPressedList([]);
         console.log("List of planets after Pressing Tra Again:", buttonNamesPressedList.length);
+        setFailedMessage("");
+        setFailedButtonMessage("");
     }
 
     const findNextPair = () => {
+        setNumPiecesPressed(0);
+        setSuccessMessage("");
+        setSuccessButtonMessage("");
+        setButtonNamesPressedList([]);
+    };
 
-    }
 
     return (
         <div className="main-table">
+
             <div className="table-buttons">
 
                 <div>
@@ -71,7 +82,7 @@ export const MemoryTable = () => {
                             <div key={index}>
 
                                 {
-                                    numPiecesPressed >= 2 ?
+                                    numPiecesPressed === 2 ?
                                         //YES, equal or higher than 2
                                         <div
                                             className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
@@ -84,7 +95,6 @@ export const MemoryTable = () => {
                                         //NO
                                         <div
                                             className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
-                                            // className={buttonUncovered ? "pieceBoxUncovered" : "pieceBoxCovered"}
                                             onClick={() => handleButtonPiece(piece)}
                                         >
                                             {piece.name}{" "}{piece.id}
@@ -94,37 +104,40 @@ export const MemoryTable = () => {
                     })
                 }
             </div>
+
+
             <div>
                 <div className="evaluationWindow">
                     <div>EVALUATION TIME</div>
-                    <div>{buttonNamesPressedList[0]}</div>
-                    <div>{buttonNamesPressedList[1]}</div>
+                    <div>{buttonNamesPressedList[buttonNamesPressedList.length - 2]}</div>
+                    <div>{buttonNamesPressedList[buttonNamesPressedList.length - 1]}</div>
                 </div>
                 <div>
-                    <div>Number of buttons pressed: {" "}{buttonNamesPressedList.length}</div>
+                    <div>Number of buttons pressed: {" "}{numPiecesPressed}</div>
                     {
-                        buttonNamesPressedList[0] && buttonNamesPressedList[1] !== 0 ?
+                        buttonNamesPressedList[buttonNamesPressedList.length - 2] && buttonNamesPressedList[buttonNamesPressedList.length - 1] !== 0 ?
                             <div>
                                 {
-                                    buttonNamesPressedList.length === 2 ?
+                                    buttonNamesPressedList.length % 2 === 0 ?
                                         <div>
                                             {
-                                                buttonNamesPressedList[0] === buttonNamesPressedList[1] ?
+                                                buttonNamesPressedList[buttonNamesPressedList.length - 2] === buttonNamesPressedList[buttonNamesPressedList.length - 1] ?
                                                     <div>
-                                                        <h1>MATCH!</h1>
-                                                        <button
+                                                        <h1>{successMessage}</h1>
+                                                        <div
                                                             onClick={() => findNextPair()}
                                                         >
-                                                            FIND NEXT PAIR
-                                                        </button>
+                                                            {successButtonMessage.toUpperCase()}
+                                                        </div>
                                                     </div>
                                                     :
                                                     <div>
-                                                        <button
+                                                        <h1>{failedMessage}</h1>
+                                                        <div
                                                             onClick={() => nextTry()}
                                                         >
-                                                            TRY AGAIN
-                                                        </button>
+                                                            {failedButtonMessage.toUpperCase()}
+                                                        </div>
                                                     </div>
                                             }
                                         </div>

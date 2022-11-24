@@ -18,7 +18,7 @@ export const allPieces = [
     { id: "18", isActive: "No", name: "Moon" },
     { id: "19", isActive: "No", name: "Moon" },
     { id: "20", isActive: "No", name: "Europa" },
-    { id: "20", isActive: "No", name: "Europa" },
+    { id: "21", isActive: "No", name: "Europa" },
 ];
 
 
