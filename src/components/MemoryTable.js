@@ -13,9 +13,11 @@ export const MemoryTable = () => {
     const [failedMessage, setFailedMessage] = React.useState("Failed!")
     const [successButtonMessage, setSuccessButtonMessage] = React.useState("find next pair")
     const [failedButtonMessage, setFailedButtonMessage] = React.useState("try again")
+    const [matchedPairs, setMatchedPairs] = React.useState(0)
 
     console.log("ID PRESSED LIST", idPressedList);
     console.log("NUM PIECES PRESSED", numPiecesPressed);
+    console.log("NUM MATCHES PAIRED", matchedPairs);
 
     React.useEffect(() => {
         getAllPieces().then((result) => {
@@ -49,12 +51,13 @@ export const MemoryTable = () => {
         setFailedButtonMessage("try again");
     }
 
-    // FIND NEXT PAIR BUTTON
+    // FIND NEXT PAIR BUTTON AFTER SUCCESS
     const findNextPair = () => {
         setNumPiecesPressed(0);
         setSuccessMessage("match!");
         setSuccessButtonMessage("find next pair");
         setButtonNamesPressedList([]);
+        setMatchedPairs(matchedPairs + 1)
     };
 
 
@@ -128,7 +131,13 @@ export const MemoryTable = () => {
                                                         <div
                                                             onClick={() => findNextPair()}
                                                         >
-                                                            {successButtonMessage.toUpperCase()}
+                                                            {
+                                                                matchedPairs === 9 ?
+                                                                    <div>Game ended</div>
+                                                                    :
+                                                                    <div>{successButtonMessage.toUpperCase()}</div>
+                                                            }
+
                                                         </div>
                                                     </div>
                                                     :
