@@ -33,6 +33,6 @@
     "sass": "^1.54.3"
   },
   "devDependencies": {
-    "@mdx-js/react": "^1.6.22"
+    "@mdx-js/react": "^2.1.1"
   }
 }
