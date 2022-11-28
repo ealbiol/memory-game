@@ -18,7 +18,9 @@ body {
   justify-content: center;
   align-items: center;
   width: 75%;
-  margin: 20px
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 };
 
 .pieceBoxCovered{
@@ -26,12 +28,15 @@ body {
   padding: 5px;
   margin: 10px;
   width: 150px;
+  height: 150px;
   display: flex;
   justify-content: center;
+  align-items: center ;
   border-radius: 2px;
   cursor: pointer;
   background-color: salmon;
-  color: black
+  color: black;
+  // color: transparent
 };
 
 .pieceBoxCovered:hover{
@@ -43,8 +48,10 @@ body {
   padding: 5px;
   margin: 10px;
   width: 150px;
+  height: 150px;
   display: flex;
   justify-content: center;
+  align-items: center;
   border-radius: 2px;
   cursor: pointer;
   color: black;

@@ -2,6 +2,7 @@ import * as React from "react"
 import "../styles/MemoryTable.scss"
 import { getAllPieces } from "../data/data"
 
+
 export const MemoryTable = () => {
 
     const [pieces, setPieces] = React.useState([])
@@ -19,15 +20,15 @@ export const MemoryTable = () => {
     console.log("NUM PIECES PRESSED", numPiecesPressed);
     console.log("NUM MATCHES PAIRED", matchedPairs);
 
+
     React.useEffect(() => {
         getAllPieces().then((result) => {
             setPieces(result)
         })
     }, [])
 
+
     const handleButtonPiece = (params) => {
-        // console.log("Button id:", params.id);
-        // console.log("Full Object", params);
         setNumPiecesPressed(numPiecesPressed + 1);
         buttonNamesPressedList.push(params.name)
         console.log("Planets pressed:", buttonNamesPressedList);
@@ -36,9 +37,6 @@ export const MemoryTable = () => {
             idPressedList.push(params.id)
         }
         console.log("ID Pressed List:", idPressedList);
-        // params.isActive = "Yes"
-        // console.log("AA", params.isActive);
-
     }
 
     //TRY AGAIN BUTTON
@@ -66,7 +64,7 @@ export const MemoryTable = () => {
 
             <div className="table-buttons">
 
-                <div>
+                {/* <div>
                     {
                         numPiecesPressed === 2
                             ?
@@ -77,7 +75,7 @@ export const MemoryTable = () => {
                             :
                             <div>Number of buttons pressed: {numPiecesPressed}</div>
                     }
-                </div>
+                </div> */}
 
 
                 {
