@@ -1,5 +1,5 @@
 import * as React from "react"
-import { MemoryTable } from "../components/memoryTable"
+import { MemoryTable } from "../components/MemoryTable"
 
 export const MemoryGamePage = () => {
 
