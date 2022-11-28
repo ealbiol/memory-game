@@ -24,7 +24,7 @@ body {
 };
 
 .pieceBoxCovered{
-  border: 1px solid black;
+  border: 2px solid transparent;
   padding: 5px;
   margin: 10px;
   width: 150px;
@@ -40,7 +40,7 @@ body {
 };
 
 .pieceBoxCovered:hover{
-  border: 2px solid black;
+  border: 2px solid rgb(251, 87, 87);
 }
 
 .pieceBoxUncovered{
@@ -55,7 +55,8 @@ body {
   border-radius: 2px;
   cursor: pointer;
   color: black;
-  pointer-events: none
+  pointer-events: none;
+  font-size: 20px
 };
 
 .evaluationWindow{
