@@ -1,7 +1,7 @@
 import * as React from "react"
 import "../styles/MemoryTable.scss"
 import { getAllPieces } from "../data/data"
-import Spider from "../images/imgpieces/spider.svg"
+// import Spider from "../images/imgpieces/spider.svg"
 
 
 export const MemoryTable = () => {
@@ -95,7 +95,10 @@ export const MemoryTable = () => {
                                         <div
                                             className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
                                         >
-                                            {piece.name.toUpperCase()}{" "}
+                                            {
+                                                idPressedList.includes(piece.id) ? piece.animalImage : ""
+                                            }
+                                            {/* {piece.name.toUpperCase()}{" "} */}
                                             {/* {piece.id} */}
                                         </div>
 
@@ -106,7 +109,10 @@ export const MemoryTable = () => {
                                             className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
                                             onClick={() => handleButtonPiece(piece)}
                                         >
-                                            {piece.name.toUpperCase()}{" "}
+                                            {
+                                                idPressedList.includes(piece.id) ? piece.animalImage : ""
+                                            }
+                                            {/* {piece.name.toUpperCase()}{" "} */}
                                             {/* {piece.id} */}
                                         </div>
                                 }
