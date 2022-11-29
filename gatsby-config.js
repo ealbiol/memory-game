@@ -8,7 +8,11 @@ module.exports = {
     options: {
       "trackingId": "test"
     }
-  }, "gatsby-plugin-image", "gatsby-plugin-sitemap", {
+  },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-react-svg",
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         "icon": "src/images/icon.png"
@@ -27,5 +31,6 @@ module.exports = {
         "path": "./src/pages/"
       },
       __key: "pages"
-    }]
+    },
+  ]
 };

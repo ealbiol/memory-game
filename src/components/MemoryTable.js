@@ -1,6 +1,7 @@
 import * as React from "react"
 import "../styles/MemoryTable.scss"
 import { getAllPieces } from "../data/data"
+import Spider from "../images/imgpieces/spider.svg"
 
 
 export const MemoryTable = () => {
@@ -15,10 +16,13 @@ export const MemoryTable = () => {
     const [successButtonMessage, setSuccessButtonMessage] = React.useState("find next pair")
     const [failedButtonMessage, setFailedButtonMessage] = React.useState("try again")
     const [matchedPairs, setMatchedPairs] = React.useState(0)
+    const [numAttempts, setNumAttempts] = React.useState(0)
+
 
     console.log("ID PRESSED LIST", idPressedList);
     console.log("NUM PIECES PRESSED", numPiecesPressed);
     console.log("NUM MATCHES PAIRED", matchedPairs);
+    console.log("NUM ATTEMPTS", numAttempts);
 
 
     React.useEffect(() => {
@@ -47,6 +51,7 @@ export const MemoryTable = () => {
         console.log("List of planets after Pressing Try Again:", buttonNamesPressedList.length);
         setFailedMessage("failed!");
         setFailedButtonMessage("try again");
+        setNumAttempts(numAttempts + 1)
     }
 
     // FIND NEXT PAIR BUTTON AFTER SUCCESS
@@ -56,6 +61,7 @@ export const MemoryTable = () => {
         setSuccessButtonMessage("find next pair");
         setButtonNamesPressedList([]);
         setMatchedPairs(matchedPairs + 1)
+        setNumAttempts(numAttempts + 1)
     };
 
 
@@ -77,19 +83,20 @@ export const MemoryTable = () => {
                     }
                 </div> */}
 
+                {/* <Spider /> */}
 
                 {
                     pieces.map((piece, index) => {
                         return (
                             <div key={index}>
-
                                 {
                                     numPiecesPressed === 2 ?
                                         //YES, equal or higher than 2
                                         <div
                                             className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
                                         >
-                                            {piece.name}{" "}{piece.id}
+                                            {piece.name.toUpperCase()}{" "}
+                                            {/* {piece.id} */}
                                         </div>
 
                                         :
@@ -99,7 +106,8 @@ export const MemoryTable = () => {
                                             className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
                                             onClick={() => handleButtonPiece(piece)}
                                         >
-                                            {piece.name}{" "}{piece.id}
+                                            {piece.name.toUpperCase()}{" "}
+                                            {/* {piece.id} */}
                                         </div>
                                 }
                             </div>)
@@ -110,52 +118,53 @@ export const MemoryTable = () => {
 
             <div>
                 <div className="evaluationWindow">
-                    <div>EVALUATION TIME</div>
-                    <div>{buttonNamesPressedList[buttonNamesPressedList.length - 2]}</div>
-                    <div>{buttonNamesPressedList[buttonNamesPressedList.length - 1]}</div>
-                </div>
-                <div>
-                    <div>Number of buttons pressed: {" "}{numPiecesPressed}</div>
-                    {
-                        buttonNamesPressedList[buttonNamesPressedList.length - 2] && buttonNamesPressedList[buttonNamesPressedList.length - 1] !== 0 ?
-                            <div>
-                                {
-                                    buttonNamesPressedList.length % 2 === 0 ?
-                                        <div>
-                                            {
-                                                buttonNamesPressedList[buttonNamesPressedList.length - 2] === buttonNamesPressedList[buttonNamesPressedList.length - 1] ?
-                                                    <div>
-                                                        <h1>{successMessage}</h1>
-                                                        <div
-                                                            onClick={() => findNextPair()}
-                                                        >
-                                                            {
-                                                                matchedPairs === 9 ?
-                                                                    <div>Game ended</div>
-                                                                    :
-                                                                    <div>{successButtonMessage.toUpperCase()}</div>
-                                                            }
+                    <div>Match the pairs🤔</div>
+                    <div>1- {buttonNamesPressedList[buttonNamesPressedList.length - 2]}</div>
+                    <div>2- {buttonNamesPressedList[buttonNamesPressedList.length - 1]}</div>
+                    <div>
+                        <div>Number of buttons pressed: {" "}{numPiecesPressed}</div>
+                        <div>Total moves {numAttempts}</div>
+                        {
+                            buttonNamesPressedList[buttonNamesPressedList.length - 2] && buttonNamesPressedList[buttonNamesPressedList.length - 1] !== 0 ?
+                                <div>
+                                    {
+                                        buttonNamesPressedList.length % 2 === 0 ?
+                                            <div>
+                                                {
+                                                    buttonNamesPressedList[buttonNamesPressedList.length - 2] === buttonNamesPressedList[buttonNamesPressedList.length - 1] ?
+                                                        <div>
+                                                            <h1>{successMessage}</h1>
+                                                            <div
+                                                                onClick={() => findNextPair()}
+                                                            >
+                                                                {
+                                                                    matchedPairs === 9 ?
+                                                                        <h1>GAME ENDED!</h1>
+                                                                        :
+                                                                        <div>{successButtonMessage.toUpperCase()}</div>
+                                                                }
 
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    :
-                                                    <div>
-                                                        <h1>{failedMessage}</h1>
-                                                        <div
-                                                            onClick={() => nextTry()}
-                                                        >
-                                                            {failedButtonMessage.toUpperCase()}
+                                                        :
+                                                        <div>
+                                                            <h1>{failedMessage}</h1>
+                                                            <div
+                                                                onClick={() => nextTry()}
+                                                            >
+                                                                {failedButtonMessage.toUpperCase()}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                            }
-                                        </div>
-                                        :
-                                        <div>Press one more button...</div>
-                                }
-                            </div>
-                            :
-                            <div></div>
-                    }
+                                                }
+                                            </div>
+                                            :
+                                            <div>Press one more button...</div>
+                                    }
+                                </div>
+                                :
+                                <div></div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

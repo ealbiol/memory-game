@@ -5,7 +5,7 @@ export const MemoryGamePage = () => {
 
     return (
         <div>
-            <h1>Game Page</h1>
+            <h1 style={{ color: "white", display: "flex", justifyContent: "center", margin: "50px" }}>Fancy a Game?</h1>
             <MemoryTable />
         </div>
     )

@@ -1,5 +1,9 @@
+import * as React from "react"
+import Spider from "../images/imgpieces/spider.svg"
+
+
 export const allPieces = [
-    { id: "1", name: "Earth" },
+    { id: "1", name: "Earth", animalImage: <Spider /> },
     { id: "2", name: "Earth" },
     { id: "3", name: "Jupiter" },
     { id: "4", name: "Jupiter" },

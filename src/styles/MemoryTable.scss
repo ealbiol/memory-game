@@ -3,66 +3,70 @@ $primary-color: #333;
 
 body {
   font: 100% $font-stack;
-  color: $primary-color;
+  // color: $primary-color;
+  background-color: black;
 };
 
 .main-table{
   display: flex;
-  border: 1px solid green;
+  justify-content: center;
 };
 
 .table-buttons{
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 75%;
+  gap: 15px;
+  // width: 75%;
   margin: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: #34383c;
+  border-radius: .375rem;
+  padding: 30px;
 };
 
 .pieceBoxCovered{
-  border: 2px solid transparent;
-  padding: 5px;
-  margin: 10px;
-  width: 150px;
-  height: 150px;
+  border: 1px solid transparent;
+  width: 110px;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center ;
-  border-radius: 2px;
+  border-radius: .375rem;
   cursor: pointer;
-  background-color: salmon;
+  background-color: #4c5257;
   // color: black;
   color: transparent
 };
 
 .pieceBoxCovered:hover{
-  border: 2px solid rgb(251, 87, 87);
+  background-color: #054861;
 }
 
 .pieceBoxUncovered{
-  border: 1px solid black;
-  padding: 5px;
-  margin: 10px;
-  width: 150px;
-  height: 150px;
+  width: 110px;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 2px;
+  border-radius: .375rem;
   cursor: pointer;
-  color: black;
+  color: white;
   pointer-events: none;
-  font-size: 20px
+  font-size: 20px;
+  background-color: #054861;
+  border: 1px solid #5cebdf;
 };
 
 .evaluationWindow{
   width: 100%;
-  height: 300px;
+  height: 200px;
   background-color:"red";
   margin: 20px;
-  border: 1px solid green;
+  background-color: #4c5257;
+  border-radius: .375rem;
+  color: white;
+  padding: 20px;
 }
