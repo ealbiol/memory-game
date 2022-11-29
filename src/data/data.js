@@ -1,6 +1,6 @@
 import * as React from "react"
 import Spider from "../images/imgpieces/spider.svg"
-import Dog from "../images/imgpieces/Dog.svg"
+import Dog from "../images/imgpieces/dog.svg"
 import Octopus from "../images/imgpieces/octopus.svg"
 import Squid from "../images/imgpieces/squid.svg"
 import Dinosaur from "../images/imgpieces/dinosaur.svg"
