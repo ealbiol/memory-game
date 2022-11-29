@@ -54,6 +54,7 @@ export const MemoryTable = () => {
         setNumAttempts(numAttempts + 1)
     }
 
+
     // FIND NEXT PAIR BUTTON AFTER SUCCESS
     const findNextPair = () => {
         setNumPiecesPressed(0);
@@ -124,7 +125,7 @@ export const MemoryTable = () => {
 
             <div>
                 <div className="evaluationWindow">
-                    <div>Match the pairs🤔</div>
+                    <div className="evaluationTitle">Match the pairs🤔</div>
                     <div>1- {buttonNamesPressedList[buttonNamesPressedList.length - 2]}</div>
                     <div>2- {buttonNamesPressedList[buttonNamesPressedList.length - 1]}</div>
                     <div>
@@ -156,9 +157,10 @@ export const MemoryTable = () => {
                                                         <div>
                                                             <h1>{failedMessage}</h1>
                                                             <div
+                                                                className="stepButton"
                                                                 onClick={() => nextTry()}
                                                             >
-                                                                {failedButtonMessage.toUpperCase()}
+                                                                <div>{failedButtonMessage.toUpperCase()}</div>
                                                             </div>
                                                         </div>
                                                 }
