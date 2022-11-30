@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import "../styles/MemoryTable.scss"
 import { getAllPieces } from "../data/data"
+import { Pieces } from "./Pieces"
 
 
 export const MemoryTable = () => {
@@ -67,42 +68,15 @@ export const MemoryTable = () => {
     return (
         <div className="main-table">
 
-            <div className="table-buttons">
-
-                {
-                    pieces.map((piece, index) => {
-                        return (
-                            <div key={index}>
-                                {
-                                    numPiecesPressed === 2 ?
-                                        <div
-                                            className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
-                                        >
-                                            {
-                                                idPressedList.includes(piece.id) ? piece.animalImage : ""
-                                            }
-                                            {/* {piece.name.toUpperCase()}{" "} */}
-                                            {/* {piece.id} */}
-                                        </div>
-
-                                        :
-
-                                        <div
-                                            className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
-                                            onClick={() => handleButtonPiece(piece)}
-                                        >
-                                            {
-                                                idPressedList.includes(piece.id) ? piece.animalImage : ""
-                                            }
-                                            {/* {piece.name.toUpperCase()}{" "} */}
-                                            {/* {piece.id} */}
-                                        </div>
-                                }
-                            </div>)
-                    })
-                }
-            </div>
-
+            <Pieces
+                pieces={pieces}
+                numPiecesPressed={numPiecesPressed}
+                idPressedList={idPressedList}
+                setNumPiecesPressed={setNumPiecesPressed}
+                buttonNamesPressedList={buttonNamesPressedList}
+                setButtonUncovered={setButtonUncovered}
+                buttonUncovered={buttonUncovered}
+            />
 
             <div>
                 <div className="evaluationWindow">
