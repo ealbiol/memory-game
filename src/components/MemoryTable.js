@@ -1,22 +1,20 @@
-import * as React from "react"
+import React, { useState, useEffect } from "react"
 import "../styles/MemoryTable.scss"
 import { getAllPieces } from "../data/data"
-// import Spider from "../images/imgpieces/spider.svg"
 
 
 export const MemoryTable = () => {
-
-    const [pieces, setPieces] = React.useState([])
-    const [buttonUncovered, setButtonUncovered] = React.useState(false)
-    const [idPressedList, setIdPressedList] = React.useState([])
-    const [numPiecesPressed, setNumPiecesPressed] = React.useState(0)
-    const [buttonNamesPressedList, setButtonNamesPressedList] = React.useState([])
-    const [successMessage, setSuccessMessage] = React.useState("Match!")
-    const [failedMessage, setFailedMessage] = React.useState("Failed!")
-    const [successButtonMessage, setSuccessButtonMessage] = React.useState("find next pair")
-    const [failedButtonMessage, setFailedButtonMessage] = React.useState("try again")
-    const [matchedPairs, setMatchedPairs] = React.useState(0)
-    const [numAttempts, setNumAttempts] = React.useState(0)
+    const [pieces, setPieces] = useState([])
+    const [buttonUncovered, setButtonUncovered] = useState(false)
+    const [idPressedList, setIdPressedList] = useState([])
+    const [numPiecesPressed, setNumPiecesPressed] = useState(0)
+    const [buttonNamesPressedList, setButtonNamesPressedList] = useState([])
+    const [successMessage, setSuccessMessage] = useState("Match!")
+    const [failedMessage, setFailedMessage] = useState("Failed!")
+    const [successButtonMessage, setSuccessButtonMessage] = useState("find next pair")
+    const [failedButtonMessage, setFailedButtonMessage] = useState("try again")
+    const [matchedPairs, setMatchedPairs] = useState(0)
+    const [numAttempts, setNumAttempts] = useState(0)
 
 
     console.log("ID PRESSED LIST", idPressedList);
@@ -25,7 +23,7 @@ export const MemoryTable = () => {
     console.log("NUM ATTEMPTS", numAttempts);
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         getAllPieces().then((result) => {
             setPieces(result)
         })
@@ -71,28 +69,12 @@ export const MemoryTable = () => {
 
             <div className="table-buttons">
 
-                {/* <div>
-                    {
-                        numPiecesPressed === 2
-                            ?
-                            <div>
-                                <div>Number of buttons pressed: {numPiecesPressed}</div>
-                                <div>Evaluation Moment</div>
-                            </div>
-                            :
-                            <div>Number of buttons pressed: {numPiecesPressed}</div>
-                    }
-                </div> */}
-
-                {/* <Spider /> */}
-
                 {
                     pieces.map((piece, index) => {
                         return (
                             <div key={index}>
                                 {
                                     numPiecesPressed === 2 ?
-                                        //YES, equal or higher than 2
                                         <div
                                             className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
                                         >
@@ -105,7 +87,6 @@ export const MemoryTable = () => {
 
                                         :
 
-                                        //NO
                                         <div
                                             className={idPressedList.includes(piece.id) ? "pieceBoxUncovered" : "pieceBoxCovered"}
                                             onClick={() => handleButtonPiece(piece)}
@@ -126,19 +107,19 @@ export const MemoryTable = () => {
             <div>
                 <div className="evaluationWindow">
                     <div className="evaluationTitle">Match the pairs🤔</div>
-                    <div>1- {buttonNamesPressedList[buttonNamesPressedList.length - 2]}</div>
-                    <div>2- {buttonNamesPressedList[buttonNamesPressedList.length - 1]}</div>
+                    <div>1- {buttonNamesPressedList[buttonNamesPressedList?.length - 2]}</div>
+                    <div>2- {buttonNamesPressedList[buttonNamesPressedList?.length - 1]}</div>
                     <div>
                         <div>Number of buttons pressed: {" "}{numPiecesPressed}</div>
                         <div>Total moves {numAttempts}</div>
                         {
-                            buttonNamesPressedList[buttonNamesPressedList.length - 2] && buttonNamesPressedList[buttonNamesPressedList.length - 1] !== 0 ?
+                            buttonNamesPressedList[buttonNamesPressedList?.length - 2] && buttonNamesPressedList[buttonNamesPressedList?.length - 1] !== 0 ?
                                 <div>
                                     {
-                                        buttonNamesPressedList.length % 2 === 0 ?
+                                        buttonNamesPressedList?.length % 2 === 0 ?
                                             <div>
                                                 {
-                                                    buttonNamesPressedList[buttonNamesPressedList.length - 2] === buttonNamesPressedList[buttonNamesPressedList.length - 1] ?
+                                                    buttonNamesPressedList[buttonNamesPressedList?.length - 2] === buttonNamesPressedList[buttonNamesPressedList?.length - 1] ?
                                                         <div>
                                                             <h1>{successMessage}</h1>
                                                             <div
@@ -148,19 +129,23 @@ export const MemoryTable = () => {
                                                                     matchedPairs === 9 ?
                                                                         <h1>GAME ENDED!</h1>
                                                                         :
-                                                                        <div>{successButtonMessage.toUpperCase()}</div>
+
+                                                                        <div>{successButtonMessage?.toUpperCase()}</div>
                                                                 }
 
                                                             </div>
                                                         </div>
                                                         :
                                                         <div>
-                                                            <h1>{failedMessage}</h1>
+                                                            <h1>{failedMessage &&
+                                                                (failedMessage)
+                                                            }</h1>
+                                                            {/* Si failedMessage es undefined o null no se va a mostrar nada */}
                                                             <div
                                                                 className="stepButton"
                                                                 onClick={() => nextTry()}
                                                             >
-                                                                <div>{failedButtonMessage.toUpperCase()}</div>
+                                                                <div>{failedButtonMessage?.toUpperCase()}</div>
                                                             </div>
                                                         </div>
                                                 }
