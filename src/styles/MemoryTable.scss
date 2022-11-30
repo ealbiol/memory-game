@@ -7,6 +7,13 @@ body {
   background-color: rgb(0, 0, 0);
 };
 
+.main-title{
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}
+
 .main-table{
   display: flex;
   justify-content: center;
@@ -62,7 +69,7 @@ body {
 
 .evaluationWindow{
   width: 100%;
-  height: 270px;
+  height: 33  0px;
   background-color:"red";
   margin: 20px;
   background-color: #4c5257;
@@ -75,19 +82,19 @@ body {
   background-color: #054861;
   border-radius: .375rem;
   padding: 10px;
-  width: 150px;
+  width: 180px;
   display: flex;
   justify-content: center;
   font-size: 20px;
   border: 1px solid transparent;
+  margin-top: 20px;
 }
 
 .stepButton:hover{
   border: 1px solid #5cebdf;
 }
 
-.evaluationTitle{
+.evaluation-title{
   font-size: 30px;
   font-weight: 800;
-  margin-bottom: 20px;
 }

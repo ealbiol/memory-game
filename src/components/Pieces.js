@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import "../styles/MemoryTable.scss"
-import { getAllPieces } from "../data/data"
 
-export const Pieces = ({ pieces, numPiecesPressed, idPressedList, setNumPiecesPressed, buttonNamesPressedList, setButtonUncovered, buttonUncovered }) => {
+export const Pieces = ({
+    pieces,
+    numPiecesPressed,
+    idPressedList,
+    setNumPiecesPressed,
+    buttonNamesPressedList,
+    setButtonUncovered,
+    buttonUncovered }) => {
 
     const handleButtonPiece = (params) => {
         setNumPiecesPressed(numPiecesPressed + 1);
@@ -17,7 +23,6 @@ export const Pieces = ({ pieces, numPiecesPressed, idPressedList, setNumPiecesPr
 
     return (
         <div className="main-table">
-
             <div className="table-buttons">
 
                 {
