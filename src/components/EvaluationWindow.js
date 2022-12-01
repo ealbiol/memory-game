@@ -24,6 +24,7 @@ export const EvaluationWindow = ({
                 <div>
                     <p>Number of buttons pressed: {" "}{numPiecesPressed}</p>
                     <p>Total moves {numAttempts}</p>
+                    <p>Matched Pairs {matchedPairs}</p>
                     {
                         buttonNamesPressedList[buttonNamesPressedList?.length - 2] && buttonNamesPressedList[buttonNamesPressedList?.length - 1] !== 0 ?
                             <div>

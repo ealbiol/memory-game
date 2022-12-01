@@ -18,6 +18,7 @@ export const MemoryTable = () => {
     const [matchedPairs, setMatchedPairs] = useState(0)
     const [numAttempts, setNumAttempts] = useState(0)
     const [difficultyLevel, setDifficultyLevel] = useState(0)
+    const [changedLevelStarted, setChangedLevelStarted] = useState(false)
 
 
     // console.log("ID PRESSED LIST", idPressedList);
@@ -30,7 +31,12 @@ export const MemoryTable = () => {
         getAllPieces().then((result) => {
             setPieces(result.slice(0, difficultyLevel).sort(function (a, b) { return 0.5 - Math.random() }))
         })
-    }, [difficultyLevel])
+        setIdPressedList([])
+        setNumAttempts(0)
+        setNumPiecesPressed(0)
+        setButtonNamesPressedList([])
+        setMatchedPairs(0)
+    }, [difficultyLevel, changedLevelStarted])
 
 
     //TRY AGAIN BUTTON
@@ -38,7 +44,6 @@ export const MemoryTable = () => {
         setNumPiecesPressed(0);
         setIdPressedList(idPressedList.slice(0, -2))
         setButtonNamesPressedList([]);
-        // console.log("List of planets after Pressing Try Again:", buttonNamesPressedList.length);
         setFailedMessage("failed!");
         setFailedButtonMessage("try again");
         setNumAttempts(numAttempts + 1)
@@ -55,11 +60,6 @@ export const MemoryTable = () => {
         setNumAttempts(numAttempts + 1)
     };
 
-    //DIFFICULTY LEVEL
-    // const handleButtonLevel = (e) => {
-    //     console.log("Difficulty Level id:", e.target.id);
-    //     setDifficultyLevel(e.target.id)
-    // }
 
 
     return (
@@ -67,16 +67,12 @@ export const MemoryTable = () => {
             <h1 className="main-title">Fancy a Game?</h1>
             <div className="main-table">
 
-                {/* <div>
-                    <b style={{ color: "white" }}>Choose Difficulty Level</b>
-                    <ul style={{ listStyleType: "none" }}>
-                        <li style={{ color: "white" }} id="8" onClick={(e) => handleButtonLevel(e)}>Easy</li>
-                        <li style={{ color: "white" }} id="12" onClick={(e) => handleButtonLevel(e)}>Medium</li>
-                        <li style={{ color: "white" }} id="20" onClick={(e) => handleButtonLevel(e)}>Hard</li>
-                    </ul>
-                </div> */}
-
-                <DifficultyPanel setDifficultyLevel={setDifficultyLevel} />
+                <DifficultyPanel
+                    setDifficultyLevel={setDifficultyLevel}
+                    changedLevelStarted={changedLevelStarted}
+                    setChangedLevelStarted={setChangedLevelStarted}
+                    setIdPressedList={setIdPressedList}
+                />
 
                 <Pieces
                     pieces={pieces}
