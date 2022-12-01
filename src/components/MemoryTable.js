@@ -3,6 +3,7 @@ import "../styles/MemoryTable.scss"
 import { getAllPieces } from "../data/data"
 import { Pieces } from "./Pieces"
 import { EvaluationWindow } from "./EvaluationWindow"
+import { DifficultyPanel } from "./DifficultyPanel"
 
 export const MemoryTable = () => {
     const [pieces, setPieces] = useState([])
@@ -37,7 +38,7 @@ export const MemoryTable = () => {
         setNumPiecesPressed(0);
         setIdPressedList(idPressedList.slice(0, -2))
         setButtonNamesPressedList([]);
-        console.log("List of planets after Pressing Try Again:", buttonNamesPressedList.length);
+        // console.log("List of planets after Pressing Try Again:", buttonNamesPressedList.length);
         setFailedMessage("failed!");
         setFailedButtonMessage("try again");
         setNumAttempts(numAttempts + 1)
@@ -55,10 +56,10 @@ export const MemoryTable = () => {
     };
 
     //DIFFICULTY LEVEL
-    const handleButtonLevel = (e) => {
-        console.log("Difficulty Level id:", e.target.id);
-        setDifficultyLevel(e.target.id)
-    }
+    // const handleButtonLevel = (e) => {
+    //     console.log("Difficulty Level id:", e.target.id);
+    //     setDifficultyLevel(e.target.id)
+    // }
 
 
     return (
@@ -66,14 +67,16 @@ export const MemoryTable = () => {
             <h1 className="main-title">Fancy a Game?</h1>
             <div className="main-table">
 
-                <div>
+                {/* <div>
                     <b style={{ color: "white" }}>Choose Difficulty Level</b>
                     <ul style={{ listStyleType: "none" }}>
                         <li style={{ color: "white" }} id="8" onClick={(e) => handleButtonLevel(e)}>Easy</li>
                         <li style={{ color: "white" }} id="12" onClick={(e) => handleButtonLevel(e)}>Medium</li>
                         <li style={{ color: "white" }} id="20" onClick={(e) => handleButtonLevel(e)}>Hard</li>
                     </ul>
-                </div>
+                </div> */}
+
+                <DifficultyPanel setDifficultyLevel={setDifficultyLevel} />
 
                 <Pieces
                     pieces={pieces}
