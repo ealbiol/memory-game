@@ -11,7 +11,8 @@ export const EvaluationWindow = ({
     successButtonMessage,
     failedMessage,
     handleNextTry,
-    failedButtonMessage
+    failedButtonMessage,
+    pieces
 }) => {
 
     return (
@@ -37,12 +38,11 @@ export const EvaluationWindow = ({
                                                             onClick={() => handleFindNextPair()}
                                                         >
                                                             {
-                                                                matchedPairs === 9 ?
+                                                                matchedPairs === pieces.length / 2 - 1 ?
                                                                     <b>GAME ENDED!</b>
                                                                     :
                                                                     <span className="stepButton">{successButtonMessage?.toUpperCase()}</span>
                                                             }
-
                                                         </div>
                                                     </div>
                                                     :

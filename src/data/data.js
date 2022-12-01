@@ -35,7 +35,8 @@ export const allPieces = [
 
 
 export async function getAllPieces() {
-    return allPieces.sort(function (a, b) { return 0.5 - Math.random() })
+    // return allPieces.sort(function (a, b) { return 0.5 - Math.random() })
+    return allPieces
 }
 
 // const shufflePieces = pieces.sort(function (a, b) { return 0.5 - Math.random() })

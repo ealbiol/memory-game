@@ -1,6 +1,7 @@
 import React from "react"
 import "../styles/MemoryTable.scss"
 
+
 export const Pieces = ({
     pieces,
     numPiecesPressed,
@@ -8,7 +9,9 @@ export const Pieces = ({
     setNumPiecesPressed,
     buttonNamesPressedList,
     setButtonUncovered,
-    buttonUncovered }) => {
+    buttonUncovered
+}) => {
+
 
     const handleButtonPiece = (params) => {
         setNumPiecesPressed(numPiecesPressed + 1);
@@ -21,10 +24,10 @@ export const Pieces = ({
         console.log("ID Pressed List:", idPressedList);
     }
 
+
     return (
         <div className="main-table">
             <div className="table-buttons">
-
                 {
                     pieces.map((piece, index) => {
                         return (
