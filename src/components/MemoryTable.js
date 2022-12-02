@@ -18,7 +18,7 @@ export const MemoryTable = () => {
     const [matchedPairs, setMatchedPairs] = useState(0)
     const [numAttempts, setNumAttempts] = useState(0)
     const [difficultyLevel, setDifficultyLevel] = useState(0)
-    const [changedLevelStarted, setChangedLevelStarted] = useState(false)
+    const [resetGame, setResetGame] = useState(false)
 
 
     // console.log("ID PRESSED LIST", idPressedList);
@@ -36,7 +36,7 @@ export const MemoryTable = () => {
         setNumPiecesPressed(0)
         setButtonNamesPressedList([])
         setMatchedPairs(0)
-    }, [difficultyLevel, changedLevelStarted])
+    }, [difficultyLevel, resetGame])
 
 
     //TRY AGAIN BUTTON
@@ -69,8 +69,8 @@ export const MemoryTable = () => {
 
                 <DifficultyPanel
                     setDifficultyLevel={setDifficultyLevel}
-                    changedLevelStarted={changedLevelStarted}
-                    setChangedLevelStarted={setChangedLevelStarted}
+                    resetGame={resetGame}
+                    setResetGame={setResetGame}
                     setIdPressedList={setIdPressedList}
                 />
 
@@ -99,6 +99,8 @@ export const MemoryTable = () => {
                     handleNextTry={handleNextTry}
                     failedButtonMessage={failedButtonMessage}
                     pieces={pieces}
+                    resetGame={resetGame}
+                    setResetGame={setResetGame}
                 />
 
             </div>

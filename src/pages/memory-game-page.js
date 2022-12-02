@@ -3,6 +3,7 @@ import { MemoryTable } from "../components/MemoryTable"
 
 export const MemoryGamePage = () => {
 
+
     return (
         <>
             <MemoryTable />

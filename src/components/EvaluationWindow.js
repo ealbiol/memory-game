@@ -12,8 +12,14 @@ export const EvaluationWindow = ({
     failedMessage,
     handleNextTry,
     failedButtonMessage,
-    pieces
+    pieces,
+    setResetGame,
+    resetGame
 }) => {
+
+    const handleNewGame = () => {
+        setResetGame(!resetGame)
+    }
 
     return (
         <div>
@@ -40,7 +46,10 @@ export const EvaluationWindow = ({
                                                         >
                                                             {
                                                                 matchedPairs === pieces.length / 2 - 1 ?
-                                                                    <b>GAME ENDED!</b>
+                                                                    <>
+                                                                        <b>GAME ENDED!</b>
+                                                                        <p onClick={() => handleNewGame()}>Start new game</p>
+                                                                    </>
                                                                     :
                                                                     <span className="stepButton">{successButtonMessage?.toUpperCase()}</span>
                                                             }
