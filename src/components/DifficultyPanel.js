@@ -11,8 +11,9 @@ export const DifficultyPanel = ({
     //DIFFICULTY LEVEL
     const handleButtonLevel = (e) => {
         console.log("Difficulty Level id:", e.target.id);
+        setResetGame(!resetGame);
         setDifficultyLevel(e.target.id);
-        setResetGame(!resetGame)
+
     }
 
 

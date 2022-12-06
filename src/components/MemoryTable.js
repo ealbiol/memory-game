@@ -28,15 +28,17 @@ export const MemoryTable = () => {
 
 
     useEffect(() => {
+        console.log("POR EL USE EFECT")
+        setIdPressedList([]);
         getAllPieces().then((result) => {
             setPieces(result.slice(0, difficultyLevel).sort(function (a, b) { return 0.5 - Math.random() }))
         })
-        setIdPressedList([])
+
         setNumAttempts(0)
         setNumPiecesPressed(0)
         setButtonNamesPressedList([])
         setMatchedPairs(0)
-    }, [difficultyLevel, resetGame])
+    }, [resetGame])
 
 
     //TRY AGAIN BUTTON

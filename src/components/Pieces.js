@@ -24,7 +24,7 @@ export const Pieces = ({
         console.log("ID Pressed List:", idPressedList);
     }
 
-
+    console.log("Pieces", pieces, idPressedList);
     return (
         <div className="main-table">
             <div className="table-buttons">
